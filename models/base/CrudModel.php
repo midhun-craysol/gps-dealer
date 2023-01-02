@@ -133,9 +133,9 @@ class  CrudModel extends Database
 
     public function userlog($table,$qry,$action){
       	$q=str_replace("'", "\'", $qry);
-          if($_SESSION['dealerapp']["UserID"])
+          if($_SESSION['gps-dealer']["UserID"])
           {
-              $id=$_SESSION['dealerapp']["UserID"];
+              $id=$_SESSION['gps-dealer']["UserID"];
           }
         // $qry=json_decode($qry);
         $logsqlQuery="INSERT INTO `005_userlog`(`UserLogID`, `ActionTableName`, `ActionName`, `ActionBy`,`ActionValues`,`UserAgentInfo`) VALUES ('".$this->generateId()."','".$table."','".$action."','".$id."','".$q."','".$_SERVER['HTTP_USER_AGENT']."')";

@@ -10,10 +10,6 @@ function post_back($PageName){
                     $_POST[$PostIndexes] = $PostVal;
                 }
         }
-        // $_POST['ClientID']   = $_SESSION['ClientID'];  
-        // $_POST['MobAppID']   = $_SESSION['MobAppID']; 
-        // $_POST['ClientName'] = $_SESSION['ClientName'];
-        // $_POST['UserName']   = $_SESSION['UserName'];
 }
 
 

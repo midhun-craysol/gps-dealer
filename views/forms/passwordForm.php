@@ -19,7 +19,7 @@
                                         <div class="col-12">
                                             <label class="form-label">Password<i class="text-danger">*</i></i>&nbsp;&nbsp;<i class="bi bi-eye-fill" id="ViewPwdUser" style="color:red;"></i></label></label>
                                             <input type="password" class="form-control" id="Pswd" name="Pswd">
-                                            <input type="hidden" class="form-control" id="UserID" name="UserID" value="<?php echo $_SESSION['dealerapp']["UserID"];?>">
+                                            <input type="hidden" class="form-control" id="UserID" name="UserID" value="<?php echo $_SESSION['gps-dealer']["UserID"];?>">
                                             
                                         </div>
                                        

@@ -16,9 +16,7 @@ class LoginController extends BaseController
         $this->loadView("login/footer",$scripts);   
     }
 
-    public function verifyLoginAction(){
-        // print_r($_POST);
-        // die("hiiiii");
+    public function verifyLoginAction(){       
         
         $requestMethod = $_SERVER["REQUEST_METHOD"];
 
@@ -41,7 +39,7 @@ class LoginController extends BaseController
                         $table = "dealeruser";  
                         $condition = " WHERE BINARY `LoginUserID`='".$_POST['UserName']."' AND `LoginPswd` = '".md5($_POST['LoginPswd'])."' AND Status='1' ";
 
-                        // print_r( $condition); die();
+                        
                         $responseData = $this->loginModel->verifyLogin($_POST,$condition);
                 }
               

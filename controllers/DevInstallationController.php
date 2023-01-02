@@ -13,7 +13,7 @@ class DevInstallationController extends UserBaseController
         $this->stateTable = $this->crudModel->getPageTableName("state"); 
         $this->table = ($tableName != '')? $tableName:'';
         $this->dealerStockTable = $this->crudModel->getPageTableName("dealerstock");
-        // print_r($_SESSION);
+        
     }
     public function devInstallationLogAction()
     {
@@ -54,7 +54,7 @@ class DevInstallationController extends UserBaseController
     public function detailsAction()
         { 
       
-            // print_r($_POST); die();
+            
         $requestMethod = $_SERVER["REQUEST_METHOD"];
          
                 if($requestMethod != 'POST'){                    
@@ -131,7 +131,7 @@ class DevInstallationController extends UserBaseController
                         else{    
 
                             $whereCondition =" WHERE DevInstallationLogID = '".$values['DevInstallationLogID']."' ";
-                            $stockDelCondition = "  WHERE  `DealerID`='".$_SESSION['dealerapp']['DealerMainID']."' AND   `DevInstallationLogID`='".$values['DevInstallationLogID']."' "; 
+                            $stockDelCondition = "  WHERE  `DealerID`='".$_SESSION['gps-dealer']['DealerMainID']."' AND   `DevInstallationLogID`='".$values['DevInstallationLogID']."' "; 
                             $stockUpdate= $this->crudModel->updateRow($this->dealerStockTable,['DevInstallationLogID'=>''],$stockDelCondition);
  
                             $responseData = $this->crudModel->deleteStatus($this->table,$whereCondition);
@@ -192,7 +192,7 @@ class DevInstallationController extends UserBaseController
                                 
                             }  else {
                                     $values['DeviceID'] = $this->validateDevice($values['DeviceSr']); 
-                                    $values['InstallDealerID'] = $_SESSION['dealerapp']['DealerMainID'];
+                                    $values['InstallDealerID'] = $_SESSION['gps-dealer']['DealerMainID'];
                                     if($values['DeviceID'] !=0){
                                         unset($values['DeviceSr']); 
                                         $installID = $this->crudModel->createRow($this->table,$values);
@@ -200,7 +200,7 @@ class DevInstallationController extends UserBaseController
 		                                    $dlrStock =  $this->crudModel->getPageTableName("dealerstock");
                                             $stockCondition = " WHERE `DeviceID` ='".$values['DeviceID']."' AND `DealerID` ='".$values['InstallDealerID']."' ";
                                             $stockUpdate= $this->crudModel->updateRow($dlrStock,['DevInstallationLogID'=>$installID],$stockCondition);
-                                            // ais140_activation`
+                                            
 		                                    $actTbl =  $this->crudModel->getPageTableName("ais140_activation");
                                             $tempActVlues = [
                                                  "VehID" => $values['VehID'],
@@ -242,7 +242,7 @@ class DevInstallationController extends UserBaseController
     { 
 		$devTbl =  $this->crudModel->getPageTableName("device_m");
 		$dlrStock =  $this->crudModel->getPageTableName("dealerstock");
-        $DlrID =  $_SESSION['dealerapp']['DealerMainID'];
+        $DlrID =  $_SESSION['gps-dealer']['DealerMainID'];
         $sqry  = " SELECT  `dev_m`.`DeviceID` FROM `".$devTbl."` as `dev_m` ";
         $sqry .= " JOIN `".$dlrStock."` as `dlrStk` ON  (`dlrStk`.`DeviceID` = `dev_m`.`DeviceID` )";
         $sqry .= " WHERE `DeviceSrNumber` = '".$DeviceSrNumber."' AND `dlrStk`.`DealerID`='".$DlrID."' AND `dlrStk`.`LockedForMove`='0' AND `dlrStk`.`DevInstallationLogID`='' LIMIT 1";
@@ -265,70 +265,5 @@ class DevInstallationController extends UserBaseController
             
        
     }
-    // public function updateAction()
-    //     {
-      
-      
-    //     $requestMethod = $_SERVER["REQUEST_METHOD"];
-        
- 
-    //             if($requestMethod != 'POST'){
-    //                 $this->sendOutput('', array('HTTP/1.1 400 Bad Request'));
-    //             }
-    //             else
-    //             {                    
-    //                 $errors = [];
-    //                 $fields = ["DevInstallationLogID","VehID","DeviceSr","OdoCorrectionConf"]; 
-    //                 $optionalFields = [];
-    //                 $values = [];
-    //                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //                     foreach ($fields as $field) {
-    //                         if (empty($_POST[$field]) && !in_array($field, $optionalFields)) {
-    //                             $errors[] = $field;
-    //                         } else {
-    //                             $values[$field] = $this->helperModel->InputStringFormat($_POST[$field]);
-                                
-    //                         }
-    //                     }
-
-                       
-                        
-    //                     if($_POST['Status']){
-    //                         $values['Status']=1;
-    //                     }
-    //                     else{
-    //                        $values['Status']=0;
-    //                     }
-
-                         
-    //                     if(!empty($errors)){
-    //                         $this->sendOutput(
-    //                             json_encode(array("Status"=>0,"Message"=>"Please enter all fields","fields"=>$errors)),
-    //                             array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-    //                         );
-    //                     }
-    //                     else{      
-    //                         $condition1 = " WHERE `VehID` = '".$values['VehID']."' AND  `Status` !='2' AND `DevInstallationLogID` != '".$values['DevInstallationLogID']."' ";
-    //                         $duplicates = $this->crudModel->checkDuplicates($this->table,$condition1);
-
-    //                         if($duplicates===true) {
-    //                             $this->sendOutput(
-    //                             json_encode(array("Status"=>2,"Message"=>"State Name Already Exists")),
-    //                             array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-    //                             );
-    //                         } else {
-    //                             $whereCondition ="WHERE DevInstallationLogID ='".$values['DevInstallationLogID']."'";
-    //                             $responseData = $this->crudModel->update($this->table,$values,$whereCondition);
-    //                             $this->sendOutput(
-    //                                 $responseData,
-    //                                 array('Content-Type: application/json', 'HTTP/1.1 200 OK')
-    //                             );
-    //                         } 
-    //                     }
-    //             }
-    //         }
-       
-        
-    // }
    
  }

@@ -15,9 +15,9 @@ class  LoginModel extends Database
         $sqlQuery = "SELECT * FROM `".$this->table."` ".$condtion; 
         $result = $this->db->executeQuery($sqlQuery);  
         if(!empty($result[0])){ 
-                $_SESSION['dealerapp']["UserName"]=$values['UserName'];   
-                $_SESSION['dealerapp']["loggedIn"]=1;   
-                $_SESSION['dealerapp']["DealerUserID"]=$result[0]['DealerUserID'];
+                $_SESSION['gps-dealer']["UserName"]=$values['UserName'];   
+                $_SESSION['gps-dealer']["loggedIn"]=1;   
+                $_SESSION['gps-dealer']["DealerUserID"]=$result[0]['DealerUserID'];
   
                 
                          

@@ -27,10 +27,8 @@ public function nameByID($table,$ID,$Name)
 {   
 
     $tablename=$this->crudModel->getPageTableName($table);
-   // echo $table;
-    $sqlQuery = "SELECT ".$ID.",".$Name." FROM ".$tablename." WHERE Status = '1'";
-    // echo $sqlQuery;
-    // die();
+   
+    $sqlQuery = "SELECT ".$ID.",".$Name." FROM ".$tablename." WHERE Status = '1'"; 
     $result = $this->db->executeQuery($sqlQuery);
     if(!empty($result)){            
           return(json_encode(array("qry"=>$result, "Status"=>1,"data"=>$result,"Message"=>"List fetched successfully")));

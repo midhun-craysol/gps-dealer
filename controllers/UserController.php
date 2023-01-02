@@ -21,7 +21,7 @@ class UserController extends UserBaseController
     }
 
     public function logoutAction(){
-        unset($_SESSION['dealerapp']);            
+        unset($_SESSION['gps-dealer']);            
     }
     public function SamplepageAction(){ 
             $this->loadView("parts/header");

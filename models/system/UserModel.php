@@ -87,7 +87,7 @@
             
             $actions ="<button class='btn  btn-icon' onclick='editUser(\"".$row["UserID"]."\")'><i class='bi bi-pencil' title='edit'></i></button>";
            
-            if($_SESSION['dealerapp']["LoginID"]!=$row['LoginID'])
+            if($_SESSION['gps-dealer']["LoginID"]!=$row['LoginID'])
             {
                 $actions .="<button class='btn  btn-icon' onclick='delUser(\"".$row["UserID"]."\")'>
                 <i class='bi bi-trash' title='delete'></i></button>";

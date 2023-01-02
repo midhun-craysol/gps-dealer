@@ -118,7 +118,7 @@ class  DevInstallationModel extends Database
         $query .=" JOIN `".$this->dealerTable."` ON `".$this->dealerTable."`.`DealerID` = `".$this->DevInstallationTable."`.`InstallDealerID` ";
         $query .=" JOIN `".$this->deviceTable."` ON `".$this->deviceTable."`.`DeviceID` = `".$this->DevInstallationTable."`.`DeviceID` "; 
         $query .=" LEFT JOIN `".$this->ais140_activation."` ON `".$this->DevInstallationTable."`.`DevInstallationLogID` = `".$this->ais140_activation."`.`DevInstallationLogID` "; 
-        $query .=" WHERE `".$this->DevInstallationTable."`.`Status`!='2' AND `".$this->DevInstallationTable."`.`InstallDealerID` ='".$_SESSION['dealerapp']['DealerMainID']."'  ";
+        $query .=" WHERE `".$this->DevInstallationTable."`.`Status`!='2' AND `".$this->DevInstallationTable."`.`InstallDealerID` ='".$_SESSION['gps-dealer']['DealerMainID']."'  ";
          
         $resultRecords =  $this->db->select( $query);
         

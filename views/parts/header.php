@@ -1,6 +1,6 @@
 <?php 
 
-  if(empty($_SESSION['dealerapp']))  {
+  if(empty($_SESSION['gps-dealer']))  {
     header("Location:".BASE_URL."index.php/login"); 
   }  
 ?> 
@@ -45,10 +45,7 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="dev_installation_log">Device Installation</a>
-          </li> -->
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3"> 
           <li> <a class="menuItemX" href="#" data-href="dev_installation_log"> Device Installations</a>
           </li>  
           <li class="nav-item">
